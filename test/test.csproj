@@ -32,10 +32,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NAnt.Core">
-      <HintPath>..\lib\nant-0.90\bin\NAnt.Core.dll</HintPath>
+      <HintPath>..\lib\NAnt.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core">
+      <HintPath>..\lib\nunit.core.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\lib\nunit\framework\nunit.framework.dll</HintPath>
+      <HintPath>..\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

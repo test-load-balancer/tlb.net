@@ -32,10 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NAnt.Core">
-      <HintPath>..\lib\nant-0.90\bin\NAnt.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="NAnt.DotNetTasks">
-      <HintPath>..\lib\nant-0.90\bin\NAnt.DotNetTasks.dll</HintPath>
+      <HintPath>..\lib\NAnt.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
