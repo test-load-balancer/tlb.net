@@ -53,7 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BalancerClient.cs" />
     <Compile Include="LoadBalancedFileSet.cs" />
+    <Compile Include="LoadBalancedInclude.cs" />
     <Compile Include="LoadBalancedNUnit2TestCollection.cs" />
     <Compile Include="Nunit2.cs" />
     <Compile Include="LoadBalancedNUnit2Test.cs" />

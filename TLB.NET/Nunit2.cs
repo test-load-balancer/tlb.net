@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using NAnt.Contrib.Types;
 using NAnt.Core;
 using NAnt.Core.Attributes;
@@ -9,20 +12,20 @@ using NAnt.NUnit2.Types;
 namespace NAnt.NUnit2.Tasks
 {
     [TaskName("tlbnunit2")]
-    public class LoadBalancedNunit2 : NUnit2Task
+    public class LoadBalancedNunit2Task : NUnit2Task
     {
-        private LoadBalancedFileSet _loadBalancedFileSet;
-        private LoadBalancedNUnit2TestCollection _tests = new LoadBalancedNUnit2TestCollection();
 
-        [BuildElementArray("test")]
-        public LoadBalancedNUnit2TestCollection Tests
-        {
-            get { return _tests; }
-        }
-        
         protected override void ExecuteTask()
         {
-            throw new NotImplementedException();
+            var nUnit2TestCollection = base.Tests;
+            var stringCollection = nUnit2TestCollection[0].Assemblies.FileNames;
+            var assemblyNames = new StringBuilder();
+            foreach (var str in stringCollection)
+            {
+                assemblyNames.AppendLine(new FileInfo(str).Name);
+            }
+            Console.Out.WriteLine(assemblyNames);
+            throw new NotImplementedException("Back to tlbnunit2");
         }
         
     }

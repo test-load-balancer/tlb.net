@@ -1,15 +1,37 @@
-<project name="TLBNET" default="get_pruned_file_list">
+<project name="TLBNET" default="get_pruned_file_list" basedir="C:\Program Files\nant-0.90\bin" >
+
+  <target name="input">
+    <script language="C#" prefix="password" >
+      <code>
+        <![CDATA[
+            [Function("ask")]
+            public string AskPassword(string prompt) {
+                Project.Log(Level.Info, prompt);
+                ConsoleColor oldColor = Console.ForegroundColor;
+                Console.ForegroundColor = Console.BackgroundColor;
+                try
+                {
+                    return Console.ReadLine();
+                }
+                finally
+                {
+                    Console.ForegroundColor = oldColor;
+                }
+            }
+        ]]>
+      </code>
+    </script>
+    <echo message="Password is ${password::ask('What is the password?')}"/>
+  </target>
 
   <target name="get_pruned_file_list">
+    <call target="input"/> 
     <tlbnunit2>
       <formatter type="Xml" usefile="true" extension=".xml" outputdir="C://results" />
       <test>
-        <assemblies>
-          <loadbalancedincludes name="TLB.NET\bin\Debug\*.dll" />
+        <assemblies basedir="C:\Program Files\nant-0.90\bin">
+          <include name="*.dll" />
         </assemblies>
-        <categories>
-          <exclude name="NotWorking" />
-        </categories>
       </test>
     </tlbnunit2>
   </target>

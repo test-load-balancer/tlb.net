@@ -1,3 +1,4 @@
+using System;
 using NAnt.Core.Attributes;
 using NAnt.Core.Types;
 using NAnt.NUnit2.Types;
@@ -8,12 +9,20 @@ namespace NAnt.NUnit2.Types
     [ElementName("test")]
     public class LoadBalancedNUnit2Test : NUnit2Test
     {
-        private LoadBalancedFileSet _assemblies = new LoadBalancedFileSet();
+        private AssemblyFileSet _assemblies = new AssemblyFileSet();
 
         [BuildElement("assemblies")]
-        public LoadBalancedFileSet Assemblies
+        public AssemblyFileSet Assemblies
         {
-            get { return _assemblies; }
+            get
+            {
+                _assemblies.Scan();
+                foreach (var fileName in _assemblies.FileNames)
+                {
+                    Console.Out.WriteLine(">>>" + fileName);
+                }
+                return _assemblies;
+            }
             set { _assemblies = value; }
         }
     }
