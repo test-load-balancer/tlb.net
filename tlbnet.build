@@ -1,0 +1,18 @@
+<project name="TLBNET" default="get_pruned_file_list">
+
+  <target name="get_pruned_file_list">
+    <tlbnunit2>
+      <formatter type="Xml" usefile="true" extension=".xml" outputdir="C://results" />
+      <test>
+        <assemblies>
+          <loadbalancedincludes name="TLB.NET\bin\Debug\*.dll" />
+        </assemblies>
+        <categories>
+          <exclude name="NotWorking" />
+        </categories>
+      </test>
+    </tlbnunit2>
+  </target>
+
+
+</project>

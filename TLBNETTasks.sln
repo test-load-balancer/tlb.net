@@ -1,8 +1,13 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TLB.NET", "TLB.NET\TLB.NET.csproj", "{720FC596-EF9F-4C54-9A94-8958CCD8255B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TLBNETTasks", "TLB.NET\TLBNETTasks.csproj", "{720FC596-EF9F-4C54-9A94-8958CCD8255B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{6DD37180-8493-4AA6-A934-9235CB0996AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{71219405-7A47-4706-A79E-7BB8AFB19F8F}"
+	ProjectSection(SolutionItems) = preProject
+		tlbnet.build = tlbnet.build
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

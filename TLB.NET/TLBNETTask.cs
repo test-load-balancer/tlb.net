@@ -7,7 +7,7 @@ using NAnt.Core.Attributes;
 
 namespace TLB.NET
 {
-    public class TLBNET : Task
+    public class TLBNETTask : Task
     {
         protected override void ExecuteTask()
         {

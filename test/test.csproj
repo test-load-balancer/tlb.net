@@ -34,6 +34,9 @@
     <Reference Include="NAnt.Core">
       <HintPath>..\lib\NAnt.Core.dll</HintPath>
     </Reference>
+    <Reference Include="NAnt.DotNetTasks">
+      <HintPath>..\lib\NAnt.DotNetTasks.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\lib\nunit.core.dll</HintPath>
     </Reference>
@@ -54,9 +57,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TLB.NET\TLB.NET.csproj">
+    <ProjectReference Include="..\TLB.NET\TLBNETTasks.csproj">
       <Project>{720FC596-EF9F-4C54-9A94-8958CCD8255B}</Project>
-      <Name>TLB.NET</Name>
+      <Name>TLBNETTasks</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

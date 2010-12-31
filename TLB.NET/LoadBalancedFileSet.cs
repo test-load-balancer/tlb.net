@@ -1,15 +1,23 @@
 using System;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
-using NAnt.Core.Types;
+using NAnt.Core.Attributes;
+using NAnt.DotNet.Types;
 
-namespace TLB.NET
+namespace NAnt.Core.Types
 {
-    public class LoadBalancedFileSet : FileSet
+    public class LoadBalancedFileSet : AssemblyFileSet
     {
         private const string BalancerUrl = "http://10.4.4.52:3001/balance";
+
+        [BuildElementArray("loadbalancedincludes")]
+        public Include[] LoadBalancedIncludes
+        {
+            set { Scan(); }
+        }
 
         public void GetSuiteFilesFromIncludes()
         {
@@ -35,5 +43,14 @@ namespace TLB.NET
             requestStream.Write(bytes, 0, bytes.Length);
             return webRequest;
         }
+        
+        
+        public override void Scan()
+        {
+            base.Scan();
+
+            throw new NotImplementedException("In Scan()");
+        }
+
     }
 }
