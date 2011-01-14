@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -6,32 +7,54 @@ namespace TLBNETTasks
 {
     public class BalancerClient
     {
+        private readonly string _host;
+        private readonly int _port;
 
-        private const string BalancerUrl = "http://10.4.4.52:3001/balance";
-
-        public void GetSuiteFilesFromIncludes()
+        public BalancerClient(string host, int port)
         {
-            //10.4.4.52
-            var listOfIncludeSuites = "foo/bar\nfoo/baz\n43252435/fadlskkfjdsal\na/b\n";
-            var prunedListOfSuites = PostRequestToBalancer(listOfIncludeSuites);
+            _host = host;
+            _port = port;
         }
 
-        private string PostRequestToBalancer(string listOfTestSuites)
+        public string[] GetSuiteFilesFromIncludes(string[] fileList)
         {
-            HttpWebRequest webRequest = GetWebRequest(listOfTestSuites);
-            var webResponse = webRequest.GetResponse();
-            StreamReader sr = new StreamReader(webResponse.GetResponseStream());
-            return sr.ReadToEnd().Trim();
+            string listOfIncludeSuites = string.Join("\n", fileList);
+            string prunedListOfSuites = GetResponseFromBalancer("balance", listOfIncludeSuites);
+            return prunedListOfSuites.Split(new[] {"\n"}, StringSplitOptions.None);
         }
 
-        private HttpWebRequest GetWebRequest(string listOfTestSuites)
+        public string PostSuiteTimes(string[] fileListWithTimes)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(BalancerUrl);
+            string listOfSuiteTimes = string.Join("\n", fileListWithTimes);
+            return GetResponseFromBalancer("suite_time", listOfSuiteTimes);
+        }
+
+        public string PostSuiteResults(string[] fileListWithResults)
+        {
+            string listOfSuiteResults = string.Join("\n", fileListWithResults);
+            return GetResponseFromBalancer("suite_result", listOfSuiteResults);
+        }
+
+        private Uri GetBalancerUrl(string route)
+        {
+            return new UriBuilder("http", _host, _port, route).Uri;
+        }
+
+        private string GetResponseFromBalancer(string route, string dataToPost)
+        {
+            var webRequest = (HttpWebRequest) WebRequest.Create(GetBalancerUrl(route));
             webRequest.Method = "POST";
-            byte[] bytes = Encoding.ASCII.GetBytes(listOfTestSuites);
-            var requestStream = webRequest.GetRequestStream();
+            byte[] bytes = Encoding.ASCII.GetBytes(dataToPost);
+            Stream requestStream = webRequest.GetRequestStream();
             requestStream.Write(bytes, 0, bytes.Length);
-            return webRequest;
+            var webResponse = webRequest.GetResponse();
+            Stream responseStream = webResponse.GetResponseStream();
+            if (responseStream != null)
+            {
+                var sr = new StreamReader(responseStream);
+                return sr.ReadToEnd().Trim();
+            }
+            return dataToPost;
         }
     }
 }
