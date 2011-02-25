@@ -6,7 +6,6 @@ using System.Net;
 using System.Text;
 using NAnt.Core.Attributes;
 using NAnt.DotNet.Types;
-using TLBNETTasks;
 
 namespace NAnt.Core.Types
 {

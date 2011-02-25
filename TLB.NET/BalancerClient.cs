@@ -2,21 +2,14 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace TLBNETTasks
+namespace NAnt.NUnit2.Tasks
 {
     public class BalancerClient
     {
 
-        private const string BalancerUrl = "http://10.4.4.52:3001/balance";
+        private const string BalancerUrl = "http://10.4.3.55:3001/balance";
 
-        public void GetSuiteFilesFromIncludes()
-        {
-            //10.4.4.52
-            var listOfIncludeSuites = "foo/bar\nfoo/baz\n43252435/fadlskkfjdsal\na/b\n";
-            var prunedListOfSuites = PostRequestToBalancer(listOfIncludeSuites);
-        }
-
-        private string PostRequestToBalancer(string listOfTestSuites)
+        public string PostRequestToBalancer(string listOfTestSuites)
         {
             HttpWebRequest webRequest = GetWebRequest(listOfTestSuites);
             var webResponse = webRequest.GetResponse();
@@ -27,10 +20,12 @@ namespace TLBNETTasks
         private HttpWebRequest GetWebRequest(string listOfTestSuites)
         {
             var webRequest = (HttpWebRequest)WebRequest.Create(BalancerUrl);
+            webRequest.ContentType = "application/x-www-form-urlencoded";
             webRequest.Method = "POST";
             byte[] bytes = Encoding.ASCII.GetBytes(listOfTestSuites);
             var requestStream = webRequest.GetRequestStream();
             requestStream.Write(bytes, 0, bytes.Length);
+            requestStream.Close();
             return webRequest;
         }
     }

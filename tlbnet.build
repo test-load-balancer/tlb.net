@@ -29,8 +29,16 @@
     <tlbnunit2>
       <formatter type="Xml" usefile="true" extension=".xml" outputdir="C://results" />
       <test>
-        <assemblies basedir="C:\Program Files\nant-0.90\bin">
-          <include name="*.dll" />
+        <assemblies basedir="C:\Users\gotest\Desktop\project\flash-selenium\dotnet\FlashSelenium\UnitTests\bin\Debug">
+          <include name="*Tests.dll" />
+        </assemblies>
+      </test>
+    </tlbnunit2>
+    <tlbnunit2>
+      <formatter type="Xml" usefile="true" extension=".xml" outputdir="C://results" />
+      <test>
+        <assemblies basedir="C:\Users\gotest\Desktop\project\flash-selenium\dotnet\FlashSelenium\IntegrationTests\bin\Debug">
+          <include name="*Tests.dll" />
         </assemblies>
       </test>
     </tlbnunit2>
