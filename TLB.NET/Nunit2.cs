@@ -32,7 +32,7 @@ namespace NAnt.NUnit2.Tasks
             var response = new BalancerClient().PostRequestToBalancer(toPostString(types));
             Console.Out.WriteLine(response);
         }
-
+            
         private string toPostString(List<string> types)
         {
             var postValue = new StringBuilder();

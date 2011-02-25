@@ -1,0 +1,6 @@
+TLB.NET/bin
+TLB.NET/obj
+*.suo
+_ReSharper.TLBNETTasks
+test/obj
+test/bin

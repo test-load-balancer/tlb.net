@@ -31,10 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NAnt.Core">
+    <Reference Include="NAnt.Core, Version=0.90.3780.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\NAnt.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NAnt.DotNetTasks">
+    <Reference Include="NAnt.DotNetTasks, Version=0.90.3780.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\NAnt.DotNetTasks.dll</HintPath>
     </Reference>
     <Reference Include="nunit.core">
@@ -45,15 +47,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LoadBalancedFileSetTest.cs" />
-    <Compile Include="TLBNETTest.cs" />
+    <Compile Include="BalancerClientTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
